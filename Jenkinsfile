@@ -73,6 +73,9 @@ pipeline {
                
                    sed -i 's/VERSION_AUTO_REPLACE/${BUILD_NUMBER}/g' deploy.yml 
                    sed -i 's|var_img|${ECR_REPO}|g' deploy.yml 
+
+                   ls - ltar
+                   cat deploy.yml
            """ 
            }
         }
