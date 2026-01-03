@@ -99,8 +99,10 @@ pipeline {
                     aws eks update-kubeconfig --name CynWumOye_CYO-cluster --region eu-west-1
                     
                     kubectl get pods --namespace ${NAMESPACE_DEV}
-                    kubectl create namespace ${NAMESPACE_DEV} || echo "namespace ${NAMESPACE_DEV} exists"
-                    #kubectl apply -f ${CONFIG_MAP_FILE} --namespace ${NAMESPACE_DEV}
+
+    kubectl create namespace cynwumoye --dry-run=client -o yaml | kubectl apply -f -
+    sed -i 's/fruits-veg_market/fruits-veg-market/g' *.yml
+
                     kubectl apply -f deploy.yml  --namespace ${NAMESPACE_DEV}
                     kubectl apply -f service.yml --namespace ${NAMESPACE_DEV}
                     kubectl apply -f ingress.yml --namespace ${NAMESPACE_DEV}
