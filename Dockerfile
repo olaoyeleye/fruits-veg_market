@@ -21,4 +21,5 @@ RUN pip install --no-cache-dir fastapi uvicorn
 COPY . /workspace
 
 # The correct way to write the CMD
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Change "main:app" to "backend-api.main:app"
+CMD ["uvicorn", "backend-api.main:app", "--host", "0.0.0.0", "--port", "8000"]
