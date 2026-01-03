@@ -10,7 +10,7 @@ pipeline {
             PROJECT_NAME         = "fruits-veg_market-app"      
             CONFIG_MAP_FILE       = "configmap-fruits-veg_market.yml"  
             ECR_REPO              = "${AWS_ACCOUNT_ENV}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${REPOSITORY_NAME}"
-            NAMESPACE_DEV         = "cynwumoye-dev"
+            NAMESPACE_DEV         = "cynwumoye"
 
                   } 
 //"configmap-${PROJECT_NAME}-${ENVIRONMENT}.yml"=
