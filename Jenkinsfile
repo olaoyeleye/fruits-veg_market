@@ -33,7 +33,7 @@ pipeline {
 
                 // Tag Docker Image for ${REPOSITORY_NAME}
                 sh "echo tagging Docker image for ${REPOSITORY_NAME}:${BUILD_NUMBER}"
-                sh "docker tag ${REPOSITORY_NAME}:${BUILD_NUMBER} ${ECR_REPO}:build-${BUILD_NUMBER}"
+                sh "docker tag ${REPOSITORY_NAME}:${BUILD_NUMBER} ${ECR_REPO}:${BUILD_NUMBER}"
             }
         }
 
@@ -50,7 +50,7 @@ pipeline {
                     aws ecr get-login-password --region ${AWS_ECR_REGION} |  docker login --username AWS --password-stdin ${ECR_REPO}
 
                     echo 'Pushing ${REPOSITORY_NAME} Docker Image to ECR'
-                    docker push ${ECR_REPO}:build-${BUILD_NUMBER}
+                    docker push ${ECR_REPO}:${BUILD_NUMBER}
                 """
             }
         }
