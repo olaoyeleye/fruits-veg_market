@@ -100,7 +100,7 @@ pipeline {
                     kubectl get pods --namespace ${NAMESPACE_DEV}
                     kubectl create namespace ${NAMESPACE_DEV} || echo "namespace ${NAMESPACE_DEV} exists"
                     kubectl apply -f ${CONFIG_MAP_FILE} --namespace ${NAMESPACE_DEV}
-                    kubectl apply -f ${deploy_yml}  --namespace ${NAMESPACE_DEV}
+                    kubectl apply -f deploy.yml  --namespace ${NAMESPACE_DEV}
                     kubectl apply -f service.yml --namespace ${NAMESPACE_DEV}
                     kubectl apply -f ingress.yml --namespace ${NAMESPACE_DEV}
 
