@@ -8,10 +8,10 @@ pipeline {
             CONFIGMAP_BASE_S3     = "techbleat-terraform-state-cynwumoye"
             REPOSITORY_NAME       = "p_fruits-veg_market"  
             PROJECT_NAME         = "fruits-veg_market-app"      
-            
+            CONFIG_MAP_FILE       = "configmap-fruits-veg_market"  
             ECR_REPO              = "${AWS_ACCOUNT_ENV}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${REPOSITORY_NAME}"
                   } 
-
+//"configmap-${PROJECT_NAME}-${ENVIRONMENT}.yml"=
      parameters {
         choice(
             name: 'ENVIRONMENT',
@@ -31,7 +31,7 @@ pipeline {
 
                 // Tag Docker Image for ${REPOSITORY_NAME}
                 sh "echo tagging Docker image for ${REPOSITORY_NAME}:${BUILD_NUMBER}"
-                sh "docker tag ${REPOSITORY_NAME}:${BUILD_NUMBER} ${ECR_REPO}:${BUILD_NUMBER}"
+                sh "docker tag ${REPOSITORY_NAME}:${BUILD_NUMBER} ${ECR_REPO}:build-${BUILD_NUMBER}"
             }
         }
 
@@ -48,7 +48,7 @@ pipeline {
                     aws ecr get-login-password --region ${AWS_ECR_REGION} |  docker login --username AWS --password-stdin ${ECR_REPO}
 
                     echo 'Pushing ${REPOSITORY_NAME} Docker Image to ECR'
-                    docker push ${ECR_REPO}:${BUILD_NUMBER}
+                    docker push ${ECR_REPO}:build-${BUILD_NUMBER}
                 """
             }
         }
@@ -62,7 +62,7 @@ pipeline {
             steps {
 
                sh  """  
-                   AWS_DEFAULT_REGION=US-WEST-2 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/config/${env.BRANCH_NAME}/${CONFIG_MAP_FILE} .
+                   AWS_DEFAULT_REGION=US-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/config/${env.BRANCH_NAME}/${CONFIG_MAP_FILE} .
 
                    
                    #sed -i 's/VERSION_AUTO_REPLACE/${BUILD_NUMBER}/g' ${deploy_yml} 
