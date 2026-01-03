@@ -61,7 +61,6 @@ pipeline {
                 branch "prod"
                 }
             }
-        stage('Download ConfigMap from S3 and Update Deploy file') {
             steps {
                 sh """#!/bin/bash
                     # 1. Download files
