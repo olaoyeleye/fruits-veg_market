@@ -15,8 +15,7 @@ RUN apt-get update && apt-get install -y \
 
 # Copy requirements first to leverage Docker cache
 # Create a requirements.txt if you don't have one
-RUN pip install --no-cache-dir fastapi uvicorn sqlalchemy psycopg2-binary
-
+RUN pip install --no-cache-dir fastapi uvicorn sqlalchemy psycopg2-binary psycopg  
 # Copy the rest of your code
 COPY . /workspace
 
