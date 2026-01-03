@@ -27,11 +27,11 @@ pipeline {
 
                 // Building Docker Image for ${REPOSITORY_NAME}
                 sh "echo building Docker image for ${REPOSITORY_NAME}"
-                sh "sudo docker build -t ${REPOSITORY_NAME}:${BUILD_NUMBER} ."
+                sh "docker build -t ${REPOSITORY_NAME}:${BUILD_NUMBER} ."
 
                 // Tag Docker Image for ${REPOSITORY_NAME}
                 sh "echo tagging Docker image for ${REPOSITORY_NAME}:${BUILD_NUMBER}"
-                sh "sudo docker tag ${REPOSITORY_NAME}:${BUILD_NUMBER} ${ECR_REPO}:${BUILD_NUMBER}"
+                sh "docker tag ${REPOSITORY_NAME}:${BUILD_NUMBER} ${ECR_REPO}:${BUILD_NUMBER}"
             }
         }
 
