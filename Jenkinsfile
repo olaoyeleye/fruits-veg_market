@@ -64,11 +64,11 @@ pipeline {
             steps {
 
                sh  """  
-                   AWS_DEFAULT_REGION=US-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/config/${env.BRANCH_NAME}/${CONFIG_MAP_FILE} .
+                   AWS_DEFAULT_REGION=EU-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/config/${env.BRANCH_NAME}/${CONFIG_MAP_FILE} .
  
-                    AWS_DEFAULT_REGION=US-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/ingress.yml .
-                    AWS_DEFAULT_REGION=US-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/service.
-                    AWS_DEFAULT_REGION=US-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/deploy.yml .
+                    AWS_DEFAULT_REGION=EU-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/ingress.yml .
+                    AWS_DEFAULT_REGION=EU-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/service.
+                    AWS_DEFAULT_REGION=EU-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/deploy.yml .
 
                
                    sed -i 's/VERSION_AUTO_REPLACE/${BUILD_NUMBER}/g' deploy.yml 
