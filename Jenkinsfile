@@ -23,7 +23,7 @@ pipeline {
        
         stage("Build & Tag Docker Image for Java App") {
             steps {
-# 1. Add jenkins user to the docker group
+
                 sh"sudo usermod -aG docker jenkins"
                 sh"sudo systemctl restart jenkins
                 // Building Docker Image for ${REPOSITORY_NAME}
