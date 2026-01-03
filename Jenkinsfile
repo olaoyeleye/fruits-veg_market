@@ -27,7 +27,7 @@ pipeline {
 
                 // Building Docker Image for ${REPOSITORY_NAME}
                 sh "echo building Docker image for ${REPOSITORY_NAME}"
-                sh "sudo docker build -t ${REPOSITORY_NAME}:${BUILD_NUMBER} --build-arg SPRING_DATA_CASSANDRA_CONTACT_POINTS=54.187.44.138 ."
+                sh "sudo docker build -t ${REPOSITORY_NAME}:${BUILD_NUMBER} ."
 
                 // Tag Docker Image for ${REPOSITORY_NAME}
                 sh "echo tagging Docker image for ${REPOSITORY_NAME}:${BUILD_NUMBER}"
