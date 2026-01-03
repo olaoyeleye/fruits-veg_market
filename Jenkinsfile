@@ -23,6 +23,9 @@ pipeline {
        
         stage("Build & Tag Docker Image for Java App") {
             steps {
+# 1. Add jenkins user to the docker group
+                sh"sudo usermod -aG docker jenkins"
+                sh"sudo systemctl restart jenkins
                 // Building Docker Image for ${REPOSITORY_NAME}
                 sh "echo building Docker image for ${REPOSITORY_NAME}"
                 sh "sudo docker build -t ${REPOSITORY_NAME}:${BUILD_NUMBER} --build-arg SPRING_DATA_CASSANDRA_CONTACT_POINTS=54.187.44.138 ."
