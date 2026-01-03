@@ -67,7 +67,7 @@ pipeline {
                    AWS_DEFAULT_REGION=EU-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/config/${env.BRANCH_NAME}/${CONFIG_MAP_FILE} .
  
                     AWS_DEFAULT_REGION=EU-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/ingress.yml .
-                    AWS_DEFAULT_REGION=EU-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/service.yml
+                    AWS_DEFAULT_REGION=EU-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/service.yml .
                     AWS_DEFAULT_REGION=EU-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/deploy.yml .
 
                
