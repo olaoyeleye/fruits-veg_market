@@ -8,7 +8,7 @@ pipeline {
             CONFIGMAP_BASE_S3     = "techbleat-terraform-state-cynwumoye"
             REPOSITORY_NAME       = "p_fruits-veg_market"  
             PROJECT_NAME         = "fruits-veg_market-app"      
-            CONFIG_MAP_FILE       = "configmap-fruits-veg_market"  
+            CONFIG_MAP_FILE       = "configmap-fruits-veg_market.yml"  
             ECR_REPO              = "${AWS_ACCOUNT_ENV}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${REPOSITORY_NAME}"
             NAMESPACE_DEV         = "cynwumoye-dev"
 
