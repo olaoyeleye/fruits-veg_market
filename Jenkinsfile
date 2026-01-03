@@ -10,6 +10,8 @@ pipeline {
             PROJECT_NAME         = "fruits-veg_market-app"      
             CONFIG_MAP_FILE       = "configmap-fruits-veg_market"  
             ECR_REPO              = "${AWS_ACCOUNT_ENV}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${REPOSITORY_NAME}"
+            NAMESPACE_DEV         = "cynwumoye-dev"
+
                   } 
 //"configmap-${PROJECT_NAME}-${ENVIRONMENT}.yml"=
      parameters {
@@ -63,11 +65,15 @@ pipeline {
 
                sh  """  
                    AWS_DEFAULT_REGION=US-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/config/${env.BRANCH_NAME}/${CONFIG_MAP_FILE} .
+ 
+                    AWS_DEFAULT_REGION=US-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/ingress.yml .
+                    AWS_DEFAULT_REGION=US-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/service.
+                    AWS_DEFAULT_REGION=US-WEST-1 aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/deploy.yml .
 
-                   
-                   #sed -i 's/VERSION_AUTO_REPLACE/${BUILD_NUMBER}/g' ${deploy_yml} 
-                   #sed -i 's|var_RAM_Memory|${RAM_Memory} |g' ${deploy_yml} 
-                """
+               
+                   sed -i 's/VERSION_AUTO_REPLACE/${BUILD_NUMBER}/g' deploy.yml 
+                   sed -i 's|var_img|${ECR_REPO}|g' deploy.yml 
+           """ 
            }
         }
        
@@ -79,16 +85,18 @@ pipeline {
             }
             steps {
                 sh  """ 
-                    /usr/local/bin/aws eks update-kubeconfig --name CynWumOye_CYO-cluster --region eu-west-1                    kubectl get pods --namespace ${EKS_CONFIG['DEV'].NAMESPACE}
-                    kubectl apply -f ${CONFIG_MAP_FILE} --namespace ${EKS_CONFIG['DEV'].NAMESPACE}
-                    kubectl apply -f ${deploy_yml}  --namespace ${EKS_CONFIG['DEV'].NAMESPACE}
-                    kubectl apply -f service.yml --namespace ${EKS_CONFIG['DEV'].NAMESPACE}
-                    kubectl apply -f ingress.yml --namespace ${EKS_CONFIG['DEV'].NAMESPACE}
+                    /usr/local/bin/aws eks update-kubeconfig --name CynWumOye_CYO-cluster --region eu-west-1                    
+                    kubectl get pods --namespace ${NAMESPACE_DEV}
+                    kubectl create namespace ${NAMESPACE_DEV} || echo "namespace ${NAMESPACE_DEV} exists"
+                    kubectl apply -f ${CONFIG_MAP_FILE} --namespace ${NAMESPACE_DEV}
+                    kubectl apply -f ${deploy_yml}  --namespace ${NAMESPACE_DEV}
+                    kubectl apply -f service.yml --namespace ${NAMESPACE_DEV}
+                    kubectl apply -f ingress.yml --namespace ${NAMESPACE_DEV}
 
-                    kubectl get pods --namespace ${EKS_CONFIG['DEV'].NAMESPACE}
-                    kubectl get svc --namespace ${EKS_CONFIG['DEV'].NAMESPACE}
-                    kubectl -n ${EKS_CONFIG['DEV'].NAMESPACE} get deploy
-                    kubectl -n ${EKS_CONFIG['DEV'].NAMESPACE} get ingress
+                    kubectl get pods --namespace ${NAMESPACE_DEV}
+                    kubectl get svc --namespace ${NAMESPACE_DEV}
+                    kubectl -n ${NAMESPACE_DEV} get deploy
+                    kubectl -n ${NAMESPACE_DEV} get ingress
                 """
            }
         }   
