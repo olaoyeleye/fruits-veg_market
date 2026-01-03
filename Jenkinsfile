@@ -3,7 +3,7 @@ pipeline {
         environment {
             AWS_ACCESS_KEY_ID     = credentials ('AWS_ACCESS_KEY_ID')
             AWS_SECRET_ACCESS_KEY = credentials ('AWS_SECRET_ACCESS_KEY') 
-            AWS_ECR_REGION        = 'eu-west-2' // London
+            AWS_ECR_REGION        = 'eu-west-1' 
             AWS_ACCOUNT_ENV       = "647743454395"   
             CONFIGMAP_BASE_S3     = "techbleat-terraform-state-cynwumoye"
             REPOSITORY_NAME       = "p_fruits-veg_market"  
