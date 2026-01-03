@@ -96,7 +96,8 @@ pipeline {
             }
             steps {
                 sh  """ 
-                    /usr/local/bin/aws eks update-kubeconfig --name CynWumOye_CYO-cluster --region eu-west-1                    
+                    aws eks update-kubeconfig --name CynWumOye_CYO-cluster --region eu-west-1
+                    
                     kubectl get pods --namespace ${NAMESPACE_DEV}
                     kubectl create namespace ${NAMESPACE_DEV} || echo "namespace ${NAMESPACE_DEV} exists"
                     kubectl apply -f ${CONFIG_MAP_FILE} --namespace ${NAMESPACE_DEV}
