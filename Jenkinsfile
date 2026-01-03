@@ -6,8 +6,8 @@ pipeline {
             AWS_ECR_REGION        = 'eu-west-1' 
             AWS_ACCOUNT_ENV       = "647743454395"   
             CONFIGMAP_BASE_S3     = "techbleat-terraform-state-cynwumoye"
-            REPOSITORY_NAME       = "p_fruits-veg_market"  
-            PROJECT_NAME         = "fruits-veg_market-app"      
+            REPOSITORY_NAME       = "p_fruits-veg-market"  
+            PROJECT_NAME         = "fruits-veg-market-app"      
             CONFIG_MAP_FILE       = "configmap-fruits-veg_market.yml"  
             ECR_REPO              = "${AWS_ACCOUNT_ENV}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${REPOSITORY_NAME}"
             NAMESPACE_DEV         = "cynwumoye"
@@ -100,7 +100,7 @@ pipeline {
                     
                     kubectl get pods --namespace ${NAMESPACE_DEV}
                     kubectl create namespace ${NAMESPACE_DEV} || echo "namespace ${NAMESPACE_DEV} exists"
-                    kubectl apply -f ${CONFIG_MAP_FILE} --namespace ${NAMESPACE_DEV}
+                    #kubectl apply -f ${CONFIG_MAP_FILE} --namespace ${NAMESPACE_DEV}
                     kubectl apply -f deploy.yml  --namespace ${NAMESPACE_DEV}
                     kubectl apply -f service.yml --namespace ${NAMESPACE_DEV}
                     kubectl apply -f ingress.yml --namespace ${NAMESPACE_DEV}
