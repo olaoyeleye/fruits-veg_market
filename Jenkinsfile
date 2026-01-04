@@ -66,7 +66,9 @@ pipeline {
                     # 1. Download files
                     export AWS_DEFAULT_REGION=eu-west-1
                     aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/deploy.yml . || exit 1
-
+                    aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/service.yml .
+                    aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/ingress.yml .
+                    #aws s3 cp s3://${CONFIGMAP_BASE_S3}/${PROJECT_NAME}/cynwumoye-app-manifest/${env.BRANCH_NAME}/deploy.yml .
                     # 2. Perform replacements
                     # Using double quotes for the sed command so Jenkins variables work
                     sed -i "s/VERSION_AUTO_REPLACE/${env.BUILD_NUMBER}/g" deploy.yml
