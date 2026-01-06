@@ -164,7 +164,7 @@ grafana:
 
 prometheus:
   prometheusSpec:
-    externalUrl: https://k-for-kunle.duckdns.org/prometheus
+    externalUrl: https://k-for-kunle.duckdns.org/prometheus/
     routePrefix: /
   service:
     type: NodePort
