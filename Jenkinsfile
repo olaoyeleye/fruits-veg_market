@@ -128,21 +128,19 @@ pipeline {
             steps {
                 //withCredentials([file(credentialsId: 'CynWumOye_CYO_KEY', variable: 'CYNWUMOYE_KEY')]) {
                 withCredentials([sshUserPrivateKey(credentialsId: 'CynWumOye_CYO_KEY', keyFileVariable: 'CYNWUMOYE_KEY')]) {
-        sh """
-            ssh -o StrictHostKeyChecking=no -i $CYNWUMOYE_KEY ec2-user@3.254.104.145 <<'EOF'
-                set -e
-                sudo yum install -y git
-                rm -rf fruits-veg_market
-                git clone -b dev https://github.com/olaoyeleye/fruits-veg_market.git 
-                cd fruits-veg_market/frontend
-                sed -i 's|http://localhost:8000/api/products|https://cynwumoye.duckdns.org/v1/api/products|g' index.html
-                sudo cp index.html /usr/share/nginx/html/index.html
-                sudo systemctl restart nginx
-
-                
+                    sh '''
+    ssh -o StrictHostKeyChecking=no -i $CYNWUMOYE_KEY ec2-user@3.254.104.145 <<'EOF'
+        set -e
+        sudo yum install -y git
+        rm -rf fruits-veg_market
+        git clone -b dev https://github.com/olaoyeleye/fruits-veg_market.git 
+        cd fruits-veg_market/frontend
+        sed -i 's|http://localhost:8000/api/products|https://cynwumoye.duckdns.org/v1/api/products|g' index.html
+        sudo cp index.html /usr/share/nginx/html/index.html
+        sudo systemctl restart nginx
     EOF
-        
-                 """
+             '''
+                 
                 }
             }
         }
