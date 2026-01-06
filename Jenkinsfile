@@ -127,7 +127,8 @@ pipeline {
             }
             steps {
                 sh """ 
-                    ssh -i ${CYNWUMOYE_KEY} 3.255.223.228
+                    ssh -i ${CYNWUMOYE_KEY} ec2-user@54.220.74.150
+                    ls -ltar  
                 """
             }
         }
