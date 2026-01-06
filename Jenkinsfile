@@ -134,35 +134,12 @@ pipeline {
                 sudo yum install -y git
                 rm -rf fruits-veg_market
                 git clone -b dev https://github.com/olaoyeleye/fruits-veg_market.git 
-                cd fruits-veg_market
-                git pull origin dev
-                git checkout dev
                 cd fruits-veg_market/frontend
                 sed -i 's|http://localhost:8000/api/products|https://cynwumoye.duckdns.org/v1/api/products|g' index.html
                 sudo cp index.html /usr/share/nginx/html/index.html
                 sudo systemctl restart nginx
 
-                # 1. Install Git if not present
-                sudo yum install -y git
-
-                # 2. Clean up and Clone the dev branch (one step is enough)
-                rm -rf fruits-veg_market
-                git clone -b dev https://github.com/olaoyeleye/fruits-veg_market.git 
-
-                # 3. Enter the frontend directory correctly
-                cd fruits-veg_market/frontend
-
-                # 4. Update the API endpoint 
-                # (Using | as a delimiter in sed is good practice for URLs)
-                sed -i 's|http://localhost:8000/api/products|https://cynwumoye.duckdns.org/v1/api/products|g' index.html
-
-                # 5. Copy file to Nginx web root
-                sudo cp index.html /usr/share/nginx/html/index.html
-
-                # 6. Restart Nginx
-                sudo systemctl restart nginx
                 
-                echo "--- Deployment Successful ---"
     EOF
         
                  """
