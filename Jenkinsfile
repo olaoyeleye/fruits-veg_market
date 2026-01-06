@@ -153,21 +153,38 @@ EOF
             // Write the configuration to a temporary file in the workspace
             writeFile file: 'monitoring-values.yaml', text: """
 grafana:
+  grafana.ini:
+    server:
+      domain: k-for-kunle.duckdns.org
+      root_url: "%(protocol)s://%(domain)s/grafana/"
+      serve_from_sub_path: true
   service:
     type: NodePort
     nodePort: 31000
+
 prometheus:
   prometheusSpec:
     externalUrl: https://k-for-kunle.duckdns.org/prometheus
+    routePrefix: /
   service:
     type: NodePort
     nodePort: 31090
+
 alertmanager:
+  alertmanagerSpec:
+    externalUrl: https://k-for-kunle.duckdns.org/alertmanager
   service:
     type: NodePort
     nodePort: 31093
 """
             sh """
+            # 4. Install Helm
+                curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+                chmod 700 get_helm.sh
+                ./get_helm.sh
+
+                # Verify helm installation
+                helm version
                 aws eks update-kubeconfig --name CynWumOye_CYO-cluster --region eu-west-1
                 
                 # Add and update Helm repo
