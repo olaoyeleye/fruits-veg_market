@@ -177,30 +177,31 @@ alertmanager:
     type: NodePort
     nodePort: 31093
 """
-            sh """
- # 1. Download Helm
-    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-    chmod 700 get_helm.sh
+sh """
+    # 1. Download the linux-amd64 binary directly
+    curl -fsSL https://get.helm.sh/helm-v3.19.4-linux-amd64.tar.gz -o helm.tar.gz
     
-    # 2. Run the script but tell it NOT to use sudo
-    USE_SUDO=false ./get_helm.sh
+    # 2. Unpack the tarball
+    tar -zxvf helm.tar.gz
     
-    # 3. Add the current directory to the PATH so the shell can find 'helm'
-    export PATH=\$PATH:\$(pwd)
+    # 3. Move the binary to the current directory and make it executable
+    mv linux-amd64/helm ./helm
+    chmod +x ./helm
     
-    # Verify installation
-    helm version
+    # 4. Use './helm' instead of just 'helm' to tell the system to look in the current folder
+    ./helm version
 
-    # 4. Proceed with deployment
+    # 5. Proceed with deployment using the local binary
     aws eks update-kubeconfig --name CynWumOye_CYO-cluster --region eu-west-1
-    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-    helm repo update
     
-    helm upgrade --install monitoring-stack prometheus-community/kube-prometheus-stack \
+    ./helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+    ./helm repo update
+
+    ./helm upgrade --install monitoring-stack prometheus-community/kube-prometheus-stack \
         --namespace monitoring \
         --create-namespace \
         -f monitoring-values.yaml
-            """
+"""
         }
     }
 }
