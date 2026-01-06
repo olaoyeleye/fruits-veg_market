@@ -126,7 +126,7 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([file(credentialsId: 'your-credential-id-in-jenkins', variable: 'CYNWUMOYE_KEY')]) {
+                withCredentials([file(credentialsId: 'CynWumOye_CYO_KEY', variable: 'CYNWUMOYE_KEY')]) {
                     sh """ssh -o StrictHostKeyChecking=no -i $CYNWUMOYE_KEY ec2-user@54.220.74.150 <<'EOF'
                     echo "--- Successfully connected to remote instance ---"
                     yum install -y git
