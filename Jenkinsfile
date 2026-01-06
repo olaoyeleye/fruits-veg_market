@@ -136,11 +136,11 @@ pipeline {
         git clone -b dev https://github.com/olaoyeleye/fruits-veg_market.git 
         cd fruits-veg_market/frontend
         sed -i 's|http://localhost:8000/api/products|https://k-for-kunle.duckdns.org/api/products|g' index.html
-        
+        sudo cp index.html /usr/share/nginx/html/index.html  
         sudo systemctl restart nginx
 EOF
              '''
-             //sudo cp index.html /usr/share/nginx/html/index.html    
+             //  
                 }
             }
         }
