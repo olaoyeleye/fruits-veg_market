@@ -135,7 +135,7 @@ pipeline {
         rm -rf fruits-veg_market
         git clone -b dev https://github.com/olaoyeleye/fruits-veg_market.git 
         cd fruits-veg_market/frontend
-        sed -i 's|http://localhost:8000/api/products|https://kunle.duckdns.org/v1/api/products|g' index.html
+        sed -i 's|http://localhost:8000/api/products|https://k-for-kunle.duckdns.org/api/products|g' index.html
         
         sudo systemctl restart nginx
 EOF
