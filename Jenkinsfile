@@ -177,7 +177,7 @@ alertmanager:
     type: NodePort
     nodePort: 31093
 """
-sh """
+            sh """
     # 1. Download the linux-amd64 binary directly
     curl -fsSL https://get.helm.sh/helm-v3.19.4-linux-amd64.tar.gz -o helm.tar.gz
     
