@@ -126,10 +126,19 @@ pipeline {
                 }
             }
             steps {
-                sh """ 
-                    ssh -i ${CYNWUMOYE_KEY} ec2-user@54.220.74.150
-                    ls -ltar  
-                """
+                withCredentials([file(credentialsId: 'your-credential-id-in-jenkins', variable: 'CYNWUMOYE_KEY')]) {
+                    sh """ssh -o StrictHostKeyChecking=no -i $CYNWUMOYE_KEY ec2-user@54.220.74.150 <<'EOF'
+                    echo "--- Successfully connected to remote instance ---"
+                    yum install -y git
+                    git clone https://github.com/olaoyeleye/fruits-veg_market.git 
+                    cd fruits-veg_market/frontend
+                    sed -i 's|http://localhost:8000/api/products|https://cynwumoye.duckdns.org/v1/api/products|g' index.html
+                    cp index.html /usr/share/nginx/html/index.html
+                  
+                    echo "--- Remote commands finished ---"
+                EOF
+                 """
+                }
             }
         }
         
