@@ -133,7 +133,7 @@ pipeline {
                     sudo yum install -y git
                     rm -rf fruits-veg_market
                     git clone https://github.com/olaoyeleye/fruits-veg_market.git 
-                    sudo cd fruits-veg_market/frontend
+                    cd fruits-veg_market/frontend
                     sed -i 's|http://localhost:8000/api/products|https://cynwumoye.duckdns.org/v1/api/products|g' index.html
                     sudo cp index.html /usr/share/nginx/html/index.html
                   
