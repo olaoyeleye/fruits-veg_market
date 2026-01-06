@@ -138,7 +138,7 @@ pipeline {
         sed -i 's|http://localhost:8000/api/products|https://cynwumoye.duckdns.org/v1/api/products|g' index.html
         sudo cp index.html /usr/share/nginx/html/index.html
         sudo systemctl restart nginx
-    EOF
+EOF
              '''
                  
                 }
