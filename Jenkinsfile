@@ -129,7 +129,7 @@ pipeline {
                 //withCredentials([file(credentialsId: 'CynWumOye_CYO_KEY', variable: 'CYNWUMOYE_KEY')]) {
                 withCredentials([sshUserPrivateKey(credentialsId: 'CynWumOye_CYO_KEY', keyFileVariable: 'CYNWUMOYE_KEY')]) {
                     sh '''
-    ssh -o StrictHostKeyChecking=no -i $CYNWUMOYE_KEY ec2-user@3.254.104.145 <<'EOF'
+    ssh -o StrictHostKeyChecking=no -i $CYNWUMOYE_KEY ec2-user@176.34.222.99 <<'EOF'
         set -e
         sudo yum install -y git
         rm -rf fruits-veg_market
