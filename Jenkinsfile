@@ -127,13 +127,15 @@ pipeline {
             }
             steps {
                 withCredentials([file(credentialsId: 'CynWumOye_CYO_KEY', variable: 'CYNWUMOYE_KEY')]) {
-                    sh """ssh -o StrictHostKeyChecking=no -i $CYNWUMOYE_KEY ec2-user@54.220.74.150 <<'EOF'
+                    sh """ssh -o StrictHostKeyChecking=no -i $CYNWUMOYE_KEY ec2-user@3.254.104.145 <<'EOF'
+                    set -e
                     echo "--- Successfully connected to remote instance ---"
-                    yum install -y git
+                    sudo yum install -y git
+                    rm -rf fruits-veg_market
                     git clone https://github.com/olaoyeleye/fruits-veg_market.git 
-                    cd fruits-veg_market/frontend
+                    sudo cd fruits-veg_market/frontend
                     sed -i 's|http://localhost:8000/api/products|https://cynwumoye.duckdns.org/v1/api/products|g' index.html
-                    cp index.html /usr/share/nginx/html/index.html
+                    sudo cp index.html /usr/share/nginx/html/index.html
                   
                     echo "--- Remote commands finished ---"
                 EOF
