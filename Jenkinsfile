@@ -115,6 +115,8 @@ pipeline {
                     kubectl get svc --namespace ${NAMESPACE_DEV}
                     kubectl -n ${NAMESPACE_DEV} get deploy
                     kubectl -n ${NAMESPACE_DEV} get ingress
+
+                    
                 """
             }
         }  
@@ -144,7 +146,43 @@ EOF
                 }
             }
         }
-        
+        stage('Deploy Monitoring Stack') {
+    when { branch "dev" }
+    steps {
+        script {
+            // Write the configuration to a temporary file in the workspace
+            writeFile file: 'monitoring-values.yaml', text: """
+grafana:
+  service:
+    type: NodePort
+    nodePort: 31000
+prometheus:
+  prometheusSpec:
+    externalUrl: https://k-for-kunle.duckdns.org/prometheus
+  service:
+    type: NodePort
+    nodePort: 31090
+alertmanager:
+  service:
+    type: NodePort
+    nodePort: 31093
+"""
+            sh """
+                aws eks update-kubeconfig --name CynWumOye_CYO-cluster --region eu-west-1
+                
+                # Add and update Helm repo
+                helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+                helm repo update
+
+                # Install/Upgrade the stack using the values file
+                helm upgrade --install monitoring-stack prometheus-community/kube-prometheus-stack \
+                    --namespace monitoring \
+                    --create-namespace \
+                    -f monitoring-values.yaml
+            """
+        }
+    }
+}
         stage("Deployment Approval") {
             when {
                 anyOf {
