@@ -303,6 +303,6 @@ def get_products():
             for p in rows
         ]
 
-#@app.get("/", response_class=HTMLResponse)
-#def index():
-#    return Path("index.html").read_text(encoding="utf-8")
+@app.get("/", response_class=HTMLResponse)
+def index():
+    return Path("index.html").read_text(encoding="utf-8")
