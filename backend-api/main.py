@@ -15,7 +15,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session
 DATABASE_URL = (
     #"postgresql+psycopg://user:pass@db.server:5432/postgres"
     #"postgresql+psycopg://postgres:1234abcd@cynwumoye-cyo-db.c96ckkegil1k.eu-west-1.rds.amazonaws.com:5432/cynwumoye_DB"
-    "postgresql+psycopg://dbuser:dbpassword@192.168.10.23:5432/fruitveg_db"
+    "postgresql+psycopg://dbuser:dbpassword@192.168.10.23:32100/fruitveg_db"
 )
 
 engine = create_engine(
