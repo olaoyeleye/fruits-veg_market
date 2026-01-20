@@ -14,8 +14,8 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session
 # -----------------------------
 DATABASE_URL = (
     #"postgresql+psycopg://user:pass@db.server:5432/postgres"
-    #"postgresql+psycopg://postgres:1234abcd@cynwumoye-cyo-db.c96ckkegil1k.eu-west-1.rds.amazonaws.com:5432/cynwumoye_DB"
-    "postgresql+psycopg://dbuser:dbpassword@192.168.10.23:32100/fruitveg_db"
+    "postgresql+psycopg://postgres:1234abcd@cynwumoye-cyo-db.c96ckkegil1k.eu-west-1.rds.amazonaws.com:5432/cynwumoye_DB"
+   # "postgresql+psycopg://dbuser:dbpassword@192.168.10.23:32100/fruitveg_db"
 )
 
 engine = create_engine(
@@ -76,7 +76,7 @@ def seed_data():
                 stock=40,
                 tag="deal",
                 deal=1.59,
-                image="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="mango",
@@ -87,7 +87,7 @@ def seed_data():
                 rating=4.8,
                 stock=36,
                 tag="hot",
-                image="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="strawberries",
@@ -98,7 +98,7 @@ def seed_data():
                 rating=4.7,
                 stock=18,
                 tag="fresh",
-                image="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="pineapple",
@@ -109,7 +109,7 @@ def seed_data():
                 rating=4.5,
                 stock=12,
                 tag="limited",
-                image="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="blueberries",
@@ -120,7 +120,7 @@ def seed_data():
                 rating=4.7,
                 stock=9,
                 tag="limited",
-                image="https://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="apple",
@@ -131,7 +131,7 @@ def seed_data():
                 rating=4.5,
                 stock=25,
                 tag="fresh",
-                image="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=1200&q=80",
             ),
 
             # ---------- VEGETABLES ----------
@@ -144,7 +144,7 @@ def seed_data():
                 rating=4.5,
                 stock=28,
                 tag="fresh",
-                image="https://images.unsplash.com/photo-1561136594-7f68413baa99?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1561136594-7f68413baa99?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="kale",
@@ -155,7 +155,7 @@ def seed_data():
                 rating=4.4,
                 stock=14,
                 tag="hot",
-                image="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="carrots",
@@ -166,7 +166,7 @@ def seed_data():
                 rating=4.6,
                 stock=10,
                 tag="limited",
-                image="https://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="cucumber",
@@ -178,7 +178,7 @@ def seed_data():
                 stock=45,
                 tag="deal",
                 deal=1.69,
-                image="https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="bellpepper",
@@ -189,7 +189,7 @@ def seed_data():
                 rating=4.5,
                 stock=16,
                 tag="hot",
-                image="https://images.pexels.com/photos/594137/pexels-photo-594137.jpeg",
+                image="http://images.pexels.com/photos/594137/pexels-photo-594137.jpeg",
             ),
             Product(
                 id="spinach",
@@ -200,7 +200,7 @@ def seed_data():
                 rating=4.4,
                 stock=20,
                 tag="fresh",
-                image="https://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="onion",
@@ -211,7 +211,7 @@ def seed_data():
                 rating=4.3,
                 stock=34,
                 tag="",
-                image="https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1200&q=80",
             ),
 
             # ---------- HERBS ----------
@@ -224,7 +224,7 @@ def seed_data():
                 rating=4.6,
                 stock=16,
                 tag="fresh",
-                image="https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="mint",
@@ -236,7 +236,7 @@ def seed_data():
                 stock=22,
                 tag="deal",
                 deal=2.99,
-                image="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="cilantro",
@@ -247,7 +247,7 @@ def seed_data():
                 rating=4.3,
                 stock=30,
                 tag="fresh",
-                image="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=1200&q=80",
             ),
             Product(
                 id="parsley",
@@ -258,7 +258,7 @@ def seed_data():
                 rating=4.2,
                 stock=26,
                 tag="",
-                image="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
+                image="http://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
             ),
         ]
 
